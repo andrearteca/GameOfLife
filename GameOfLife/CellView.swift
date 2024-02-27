@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct CellView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    @Binding var cell: Cell
+    
+    var color: Color{
+        cell.isAlive ? Color.green : Color.black
     }
-}
-
-#Preview {
-    CellView()
+    
+    var body: some View {
+       Circle()
+            .fill(color)
+            .frame(minWidth: 5, maxWidth: 20, minHeight: 5, maxHeight: 20)
+            .scaleEffect(cell.isAlive ? 1.5 : 1)
+            .onTapGesture {
+                withAnimation {
+                    cell.isAlive.toggle()
+                }
+            }
+    }
 }

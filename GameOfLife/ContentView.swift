@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var cells: [[Cell]] = Array(repeating: Array(repeating: Cell(), count: 10), count: 10)
+    @State var isPaused: Bool = true
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            GameView(cells: $cells, isPaused: $isPaused)
+            ControlsView(isPaused: $isPaused, onReset: reset)
         }
-        .padding()
+  
+    }
+    
+    
+    func reset(){
+   
+        withAnimation {
+            cells = Array(repeating: Array(repeating: Cell(), count: 10), count: 10)
+        }
     }
 }
 

@@ -8,6 +8,5 @@
 import Foundation
 
 struct Cell{
-    var alive: Bool
-    var nextState: Bool
+    var isAlive: Bool = false
 }

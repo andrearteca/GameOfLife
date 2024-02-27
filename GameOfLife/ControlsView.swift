@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ControlsView: View {
+    
+    @Binding var isPaused: Bool
+    var onReset: ()->Void
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Button("Play"){
+                isPaused.toggle()
+            }
+            Button("Reset"){
+                onReset()
+            }
+        }
     }
 }
 
-#Preview {
-    ControlsView()
-}
+
