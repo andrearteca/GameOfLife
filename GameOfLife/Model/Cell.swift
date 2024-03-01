@@ -11,5 +11,12 @@ import SwiftUI
 struct Cell: Identifiable, Hashable{
     let id = UUID()
     var isAlive: Bool
-    var nextStep: Bool?
+   
+}
+
+
+struct ZombieCell: Identifiable, Hashable{
+    let id = UUID()
+    var isAlive: Bool
+    var didDie: Bool
 }

@@ -73,10 +73,6 @@ extension View{
         return livingNeghbours
     }
     
-    
-
-    
-    
     func gerarProxima(matriz: [[Int]]) -> [[Int]]{
         var newMatriz = [[Int]]()
 
@@ -340,6 +336,182 @@ extension View{
                     if neighbours > 3{
                         newCell.isAlive = false
                     }
+                }
+                //aqui vai adicionar cada nova célula em suas novas linhas
+                newLinha.append(newCell)
+            }
+            //aqui vai adicionar cada nova linha em uma matriz
+            newMatriz.append(newLinha)
+        }
+        
+        matriz = newMatriz
+        
+        
+    }
+
+    
+    func verVizinhosZumbis(l: Int, c: Int, m1: [[ZombieCell]]) -> [Int]{
+        
+        //variável que vai armazenar a quantidade de vizinhos
+        var livingNeghbours: Int = 0
+        var zombieNeighbours: Int = 0
+        var neighbours: [Int] = []
+        
+        //variável que vai criar uma nova matriz com as linhas vizinhas
+        var novaMatriz: [[ZombieCell]] {
+            
+            //o switch case a partir do índice da linha vai retornar matrizes diferentes
+            switch l {
+                //essa regra é para a primeira linha, que reconhece apenas ela mesma e a de baixo
+            case 0: return [m1[l], m1[l+1]]
+                //essa regra é para a ultima linha, que reconhece apenas a linha de cima e ela mesma
+            case m1.count-1: return [m1[l-1], m1[l]]
+                //e como padrão reconhece a linha de cima, ela mesma e a de baixo.
+            default: return [m1[l-1], m1[l], m1[l+1]]
+            }
+         
+        }
+         
+        //a partir das linhas da nova matriz vai gera uma repetição que individualiza as linhas
+        for linha in novaMatriz{
+            
+            //essa variável crar uma nova matriz com as colunas vizinhas
+            var newLinha : [ZombieCell] {
+                //é a mesma variável, mas pra ser usada no switch case com o append
+                var newVetor: [ZombieCell] = []
+                switch c {
+                    
+                    //essa regra é para a primeira coluna, que reconhece apenas ela mesma e a da direita
+                case 0: return {
+                    newVetor.append(contentsOf: linha[c...c+1])
+                    return newVetor
+                }()
+                    //essa regra é para a última coluna, que reconhece apenas a da esquerda e ela mesma
+                case linha.count-1: return {
+                    newVetor.append(contentsOf: linha[c-1...c])
+                    return newVetor
+                }()
+                    //como padrão, reconhece a da esquerda, ela mesma e a da direita
+                default: return {
+                    newVetor.append(contentsOf: linha[c-1...c+1])
+                    return newVetor
+                }()
+                }
+            }
+            
+            //uma repetição que individualiza elementos na nova linha criada.
+            for cell in newLinha{
+                //reconhece se a célula está viva, então adiciona 1 a variável de vizinhos vivos
+                if cell.isAlive == true {
+                    if cell.didDie == true {
+                         zombieNeighbours += 1
+                    } else{
+                        livingNeghbours += 1
+                    }
+                }
+            }
+        }
+        
+        //vê se a célula selecionada está viva, se ela estiver, vai subtrair 1 dos vizinhos vivos.
+        if m1[l][c].isAlive == true && m1[l][c].didDie == true {
+            zombieNeighbours -= 1
+        } else if m1[l][c].isAlive == true && m1[l][c].didDie == false {
+            livingNeghbours -= 1
+        }
+        
+        neighbours.append(livingNeghbours)
+        neighbours.append(zombieNeighbours)
+        
+        return neighbours
+    }
+
+
+    func gerarProximaZombie(matriz: inout [[ZombieCell]]){
+        var newMatriz = [[ZombieCell]]()
+
+    //repetição que individualiza as linhas
+        for linha in matriz.indices{
+            //variável que vai servir para as linhas da próxima geração
+            var newLinha = [ZombieCell]()
+            
+            //repetição que individualiza as colunas
+            for coluna in matriz[linha].indices{
+                
+                //variável que vai armazenar a quantidade de vizinhos de uma célula específica
+                let neighbours = verVizinhosZumbis(l: linha, c: coluna, m1: matriz)
+                
+                //variável que vai armazenar o novo valor da célula
+                var newCell: ZombieCell = ZombieCell(isAlive: false, didDie: false)
+                
+                //conicional para saber se a célula está morta
+                if matriz[linha][coluna].isAlive == false{
+                    
+                    if matriz[linha][coluna].didDie == true{
+                        newCell.didDie = true
+                    }
+                    
+                    //regra para gerar uma célula viva
+                    if neighbours[0] == 3{
+                        newCell.isAlive = true
+                    } else{
+                        newCell.isAlive = false
+                    }
+                }
+                
+                //condicional para saber se a célula está viva
+                if matriz[linha][coluna].isAlive == true{
+                    
+                    if matriz[linha][coluna].didDie == false{
+                        //regra para matar uma célula por subpopulação
+                        
+                        if neighbours[1] > 2 {
+                            newCell.isAlive = true
+                            newCell.didDie = true
+                        } else{
+                            if neighbours[0] < 2{
+                                newCell.isAlive = false
+                                newCell.didDie = true
+                            }
+                            
+                            // regras para manter a célula viva
+                            if neighbours[0] == 2{
+                                newCell.isAlive = true
+                            }
+                            if neighbours[0] == 3{
+                                newCell.isAlive = true
+                            }
+                            
+                            //regra para matar uma célula por superpopulação
+                            if neighbours[0] > 3{
+                                newCell.isAlive = false
+                                newCell.didDie = true
+                            }
+                        }
+                        
+                       
+                        
+                    }
+                    
+                    if matriz[linha][coluna].didDie == true {
+                        
+                        newCell.didDie = true
+                        
+                        if neighbours[0] > 2{
+                            newCell.isAlive = false
+                            newCell.didDie = false
+                        } else{
+                            newCell.isAlive = true
+                        }
+                        
+//                        if neighbours[1] < 2{
+//                            newCell.isAlive = false
+//                            newCell.didDie = false
+//                        }
+                        
+                       
+                    }
+                    
+                    
                 }
                 //aqui vai adicionar cada nova célula em suas novas linhas
                 newLinha.append(newCell)

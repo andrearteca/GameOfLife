@@ -11,6 +11,8 @@
 		FD11A3442B911615002626B0 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11A3432B911615002626B0 /* +View.swift */; };
 		FD11A3462B9118F1002626B0 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11A3452B9118F1002626B0 /* Cell.swift */; };
 		FD11A3492B911BC6002626B0 /* CellGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11A3482B911BC6002626B0 /* CellGameView.swift */; };
+		FD59A6E02B923F59001A6EF4 /* ZombieGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59A6DF2B923F59001A6EF4 /* ZombieGameView.swift */; };
+		FD59A6E22B924798001A6EF4 /* GameTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59A6E12B924798001A6EF4 /* GameTitleView.swift */; };
 		FDBDC4852B8D026E00345CE2 /* GameOfLifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBDC4842B8D026E00345CE2 /* GameOfLifeApp.swift */; };
 		FDBDC4872B8D026E00345CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBDC4862B8D026E00345CE2 /* ContentView.swift */; };
 		FDBDC4892B8D026F00345CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDBDC4882B8D026F00345CE2 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 		FD11A3432B911615002626B0 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		FD11A3452B9118F1002626B0 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		FD11A3482B911BC6002626B0 /* CellGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellGameView.swift; sourceTree = "<group>"; };
+		FD59A6DF2B923F59001A6EF4 /* ZombieGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieGameView.swift; sourceTree = "<group>"; };
+		FD59A6E12B924798001A6EF4 /* GameTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTitleView.swift; sourceTree = "<group>"; };
 		FDBDC4812B8D026E00345CE2 /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBDC4842B8D026E00345CE2 /* GameOfLifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeApp.swift; sourceTree = "<group>"; };
 		FDBDC4862B8D026E00345CE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +54,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FD59A6E32B9250FB001A6EF4 /* Pocs */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF5DB02B8FB29E007CDDBB /* MatrizPoc.swift */,
+				FD11A3412B9115EF002626B0 /* GameView.swift */,
+				FD11A3482B911BC6002626B0 /* CellGameView.swift */,
+			);
+			path = Pocs;
+			sourceTree = "<group>";
+		};
 		FDBDC4782B8D026E00345CE2 = {
 			isa = PBXGroup;
 			children = (
@@ -71,11 +85,11 @@
 			children = (
 				FDBDC4842B8D026E00345CE2 /* GameOfLifeApp.swift */,
 				FDBDC4862B8D026E00345CE2 /* ContentView.swift */,
-				FDEF5DB02B8FB29E007CDDBB /* MatrizPoc.swift */,
+				FD59A6E12B924798001A6EF4 /* GameTitleView.swift */,
+				FD59A6DF2B923F59001A6EF4 /* ZombieGameView.swift */,
 				FD11A3432B911615002626B0 /* +View.swift */,
+				FD59A6E32B9250FB001A6EF4 /* Pocs */,
 				FD11A3472B9118F4002626B0 /* Model */,
-				FD11A3412B9115EF002626B0 /* GameView.swift */,
-				FD11A3482B911BC6002626B0 /* CellGameView.swift */,
 				FDBDC4882B8D026F00345CE2 /* Assets.xcassets */,
 				FDBDC48A2B8D026F00345CE2 /* Preview Content */,
 			);
@@ -162,11 +176,13 @@
 			files = (
 				FDBDC4872B8D026E00345CE2 /* ContentView.swift in Sources */,
 				FDEF5DB12B8FB29E007CDDBB /* MatrizPoc.swift in Sources */,
+				FD59A6E02B923F59001A6EF4 /* ZombieGameView.swift in Sources */,
 				FD11A3422B9115EF002626B0 /* GameView.swift in Sources */,
 				FD11A3492B911BC6002626B0 /* CellGameView.swift in Sources */,
 				FDBDC4852B8D026E00345CE2 /* GameOfLifeApp.swift in Sources */,
 				FD11A3442B911615002626B0 /* +View.swift in Sources */,
 				FD11A3462B9118F1002626B0 /* Cell.swift in Sources */,
+				FD59A6E22B924798001A6EF4 /* GameTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,8 +322,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,8 +351,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
