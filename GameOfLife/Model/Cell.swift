@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct Cell: Identifiable, Hashable{
+    let id = UUID()
+    var isAlive: Bool
+    var nextStep: Bool?
+}

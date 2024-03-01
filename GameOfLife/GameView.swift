@@ -35,7 +35,9 @@ struct GameView: View {
                 Button("Próxima Geração"){
                     matriz = gerarProxima(matriz: matriz)
                 }
+                
             }
+            .position(x: geo.size.width/2, y: geo.size.height/2)
         }
     }
 }
